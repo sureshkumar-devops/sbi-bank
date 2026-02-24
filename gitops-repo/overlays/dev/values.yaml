@@ -1,0 +1,5 @@
+image:
+  repository: lehardocker/my-app
+  tag: dev-1
+
+replicaCount: 1

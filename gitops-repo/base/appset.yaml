@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: automated-set
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+        - env: dev
+        - env: staging
+        - env: prod
+
+  template:
+    metadata:
+      name: '{{env}}-my-app'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/sureshkumar-devops/sbi-bank/gitops-repo
+        targetRevision: master
+        path: charts/my-app-chart
+        helm:
+          valueFiles:
+            - overlaps/{{env}}/values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{env}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
