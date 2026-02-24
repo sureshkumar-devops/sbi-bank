@@ -9,3 +9,6 @@ service:
   targetPort: 3000
 
 
+serviceAccount:
+  create: true
+  name: ""
