@@ -17,12 +17,12 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/sureshkumar-devops/sbi-bank/gitops-repo
+        repoURL: https://github.com/sureshkumar-devops/sbi-bank.git
         targetRevision: master
-        path: charts/my-app-chart
+        path: gitops-repo/charts/my-app-chart
         helm:
           valueFiles:
-            - overlaps/{{env}}/values.yaml
+            - gitops-repo/overlaps/{{env}}/values.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{env}}'
