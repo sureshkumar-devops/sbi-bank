@@ -22,7 +22,7 @@ spec:
         path: gitops-repo/charts/my-app-chart
         helm:
           valueFiles:
-            - gitops-repo/overlays/{{env}}/values.yaml
+            - ../../overlays/{{env}}/values.yaml            
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{env}}'
